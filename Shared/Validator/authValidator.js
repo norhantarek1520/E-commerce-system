@@ -61,3 +61,33 @@ exports.loginValidator = [
 
   validatorMiddleware,
 ];
+
+exports.resetPasswordValidator = [
+  check('newPassword')
+    .notEmpty()
+    .withMessage('newPassword required')
+    .isLength({ min: 6 })
+    .withMessage('newPassword must be at least 6 characters')
+    .custom((newPassword, { req }) => {
+      if (newPassword !== req.body.newPasswordConfirm) {
+        throw new Error('Password Confirmation incorrect');
+      }
+      return true;
+    }),
+
+  check('newPasswordConfirm')
+    .notEmpty()
+    .withMessage('newPassword confirmation required'),
+
+  validatorMiddleware,
+];
+
+exports.forgetPasswordValidator = [
+  check('email')
+    .notEmpty()
+    .withMessage('Email required')
+    .isEmail()
+    .withMessage('Invalid email address'),
+
+  validatorMiddleware,
+];

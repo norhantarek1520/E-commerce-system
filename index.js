@@ -11,7 +11,6 @@ const express = require('express');
 let app = express();
 // ====================  GLOBAL MIDDLEWARE ====================
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true })); 
 app.use(cors()); 
 dotenv.config(); 
@@ -36,7 +35,6 @@ app.use('/review', require('./Routers/ReviewRouters'))
 app.use('/sub_category', require('./Routers/SubCategoryRouters'))
 app.use('/user', require('./Routers/UserRouters'))
 app.use('/wishlist', require('./Routers/WishlistRoute'))
-
 
 
 app.all('*', (req, res, next) => {

@@ -12,7 +12,7 @@ router.put('/update_password', isAuthorized,  UserController.updateUserPassword)
 router.delete('/deleteMe', isAdmin, UserController.deleteUser)
 router.get('/user_profile', isAuthorized ,UserController.getUserData)
 
-router.get('/', isAdmin ,UserController.getAllUsers)
+router.get('/' ,UserController.getAllUsers)
 router.get('/', isAdmin ,UserController.deleteUserFromDb)
 
 module.exports = router;
