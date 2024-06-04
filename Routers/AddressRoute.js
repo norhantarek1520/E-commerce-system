@@ -3,9 +3,8 @@ const {AddressController}= require("../Controllers/AddressController")
 
 const router = express.Router();
 
-router.route('/').post(AddressController.addAddress).get(AddressController.getLoggedUserAddresses);
-
+router.get('/', AddressController.addAddress);
 router.delete('/:addressId', AddressController.removeAddress);
-router.put('/:addressId', AddressController.updateAddress);
+router.get('/:addressId', AddressController.getUserAddresses);
 
 module.exports = router;

@@ -1,12 +1,53 @@
 const asyncHandler = require('express-async-handler');
-const ApiError = require('../Shared/ApiError');
-class WishlistController{
+const User = require('../Models/User')
+const { getUserId } = require("../Shared/SharedFunctions");
+class WishlistController {
 
+    static addProductToWishlist = asyncHandler(async (req, res, next) => {
+        const userId = getUserId(req.headers.authorization.split(' ')[1])
+        const user = await User.findByIdAndUpdate(
+            userId,
+            {
+                $addToSet: { wishlist: req.body.productId },
+            },
+            { new: true }
+        );
 
-static getUserWishlist = asyncHandler(async(req , res , next)=>{})
-static removeProductFromWishlist = asyncHandler(async(req , res , next)=>{})
-static addProductToWishlist = asyncHandler(async(req , res , next)=>{})
-static cleareWishlist = asyncHandler(async(req , res , next)=>{})
+        res.status(200).json({
+            status: 'success',
+            message: 'Product added successfully to your wishlist.',
+            data: user.wishlist,
+        });
+    });
+
+    static removeProductFromWishlist = asyncHandler(async (req, res, next) => {
+        const userId = getUserId(req.headers.authorization.split(' ')[1])
+        const user = await User.findByIdAndUpdate(
+            userId,
+            {
+                $pull: { wishlist: req.params.productId },
+            },
+            { new: true }
+        );
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Product removed successfully from your wishlist.',
+            data: user.wishlist,
+        });
+    });
+
+    static getUserWishlist = asyncHandler(async (req, res, next) => {
+        const userId = getUserId(req.headers.authorization.split(' ')[1])
+        const user = await User.findById(userId).populate('wishlist');
+
+        res.status(200).json({
+            status: 'success',
+            results: user.wishlist.length,
+            data: user.wishlist,
+        });
+    });
+
 
 }
-module.exports={WishlistController}
+module.exports = { WishlistController }

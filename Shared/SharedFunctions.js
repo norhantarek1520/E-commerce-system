@@ -2,15 +2,11 @@ const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 
-
-
-
-
+// ================================ user functions =========================================
 exports.getUserId = (token)=>{
+  
     const decoded = jwt.verify(token, process.env.JWT_KEY);
-    const userId = decoded.userId;
-
-    return userId ;
+    return decoded.userId ;
 }
 exports.createToken = (payload) =>{
     
@@ -46,3 +42,4 @@ exports.createHashPassword =async (password)=>{
   const hash = await bcrypt.hash(password, salt);
   return  hash ;
 }
+// ================================  functions =========================================

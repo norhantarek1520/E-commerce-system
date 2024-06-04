@@ -1,6 +1,6 @@
 const Order = require('../Models/Order')
 const asyncHandler = require('express-async-handler');
-const {getUserId} = require('../Shared/SharedFunctions')
+const { getUserId } = require('../Shared/SharedFunctions')
 const ApiError = require('../Shared/ApiError');
 // user
 // taxPrice
@@ -22,51 +22,51 @@ const ApiError = require('../Shared/ApiError');
 //       price: Number,
 //     },],
 
-class OrderController{
-  
-static createOrder = asyncHandler(async (req, res, next) => {
-    // get user id 
-    const authToken = req.headers.authorization?.split(' ')[1];
-    const userId =  getUserId(authToken);
-    // count total shoping price 
+class OrderController {
 
-    // count the total price (if there is coupon or descount)
+    static createOrder = asyncHandler(async (req, res, next) => {
+        // get user id 
+        const authToken = req.headers.authorization?.split(' ')[1];
+        const userId = getUserId(authToken);
+        // count total shoping price 
 
-    // payment way options 
+        // count the total price (if there is coupon or descount)
 
- 
-    
+        // payment way options 
 
-    const newOrder = await Order.create({
-     user :userId , 
-     shippingAddress :req.body.shippingAddress ,
-     isPaid : false ,
-     isDelivered :false     
+
+
+
+        const newOrder = await Order.create({
+            user: userId,
+            shippingAddress: req.body.shippingAddress,
+            isPaid: false,
+            isDelivered: false
+        })
     })
-})
 
-static getUserOrdersHistory = asyncHandler(async (req, res, next) => {
-})
+    static getUserOrdersHistory = asyncHandler(async (req, res, next) => {
+    })
 
-static getUserOrderByid = asyncHandler(async (req, res, next) => {
-})
+    static getUserOrderByid = asyncHandler(async (req, res, next) => {
+    })
 
-static getOrderByid = asyncHandler(async (req, res, next) => {
-})
+    static getOrderByid = asyncHandler(async (req, res, next) => {
+    })
 
-static updateOrder = asyncHandler(async (req, res, next) => {
-})
+    static updateOrder = asyncHandler(async (req, res, next) => {
+    })
 
-static canceleOrder = asyncHandler(async (req, res, next) => {
-})
-static checkoutSession = asyncHandler(async (req, res, next) => {
-})
-static createCashOrder = asyncHandler(async (req, res, next) => {
-})
-static updateOrderToPaid = asyncHandler(async (req, res, next) => {
-})
-static updateOrderToDelivered = asyncHandler(async (req, res, next) => {
-})
+    static canceleOrder = asyncHandler(async (req, res, next) => {
+    })
+    static checkoutSession = asyncHandler(async (req, res, next) => {
+    })
+    static createCashOrder = asyncHandler(async (req, res, next) => {
+    })
+    static updateOrderToPaid = asyncHandler(async (req, res, next) => {
+    })
+    static updateOrderToDelivered = asyncHandler(async (req, res, next) => {
+    })
 }
 
-module.exports={OrderController}
+module.exports = { OrderController }

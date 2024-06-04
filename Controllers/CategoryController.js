@@ -34,7 +34,8 @@ class CategoryController {
         if (category == null) { return next(new ApiError(`No Category for this id ${req.params.id}`, 404)); }
         res.status(204).json({ "message": "Category deleted successfully " })
     })
-    static uploadCategoryImage = asyncHandler(async (req,res, next)=>{})
+    static uploadCategoryImage = asyncHandler(async (req,res, next)=>{        
+    })
     static  resizeImage = asyncHandler(async (req,res, next)=>{})
 
 
