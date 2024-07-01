@@ -32,7 +32,7 @@ class AddressController {
 
     static getUserAddresses = asyncHandler(async (req, res, next) => {
         const userId = getUserId(req.headers.authorization.split(' ')[1])
-        const user = await User.findById(userId).populate('addresses');
+        const user = await User.findById(userId);
 
         res.status(200).json({ results: user.addresses.length, data: user.addresses, });
     });

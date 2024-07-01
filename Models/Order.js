@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const orderSchema = new mongoose.Schema(
   {
     user: {
@@ -13,12 +14,17 @@ const orderSchema = new mongoose.Schema(
           type: mongoose.Schema.ObjectId,
           ref: 'Product',
         },
-        quantity: Number,
+        productName : {
+          type :String
+        },
+        quantity: {
+          type: Number,
+          default: 1,
+        },
         color: String,
         price: Number,
       },
     ],
-
     taxPrice: {
       type: Number,
       default: 0,
@@ -41,6 +47,11 @@ const orderSchema = new mongoose.Schema(
       enum: ['card', 'cash'],
       default: 'cash',
     },
+    dateOrdered : {
+      type :Date , 
+      default : Date.now 
+    },
+
     isPaid: {
       type: Boolean,
       default: false,
@@ -51,6 +62,7 @@ const orderSchema = new mongoose.Schema(
       default: false,
     },
     deliveredAt: Date,
+   
   },
   { timestamps: true }
 );

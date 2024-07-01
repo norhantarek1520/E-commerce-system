@@ -39,7 +39,7 @@ class WishlistController {
 
     static getUserWishlist = asyncHandler(async (req, res, next) => {
         const userId = getUserId(req.headers.authorization.split(' ')[1])
-        const user = await User.findById(userId).populate('wishlist');
+        const user = await User.findById(userId);
 
         res.status(200).json({
             status: 'success',

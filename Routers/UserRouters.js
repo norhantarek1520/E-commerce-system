@@ -8,11 +8,9 @@ const { isAdmin } = require('../Middlewares/isAdminMiddleware')
 
 
 router.put('/update_data', isAuthorized,  UserController.updateUserData)
-router.put('/update_password', isAuthorized,  UserController.updateUserPassword)
 router.delete('/deleteMe', isAdmin, UserController.deleteUser)
 router.get('/user_profile', isAuthorized ,UserController.getUserData)
 
-router.get('/' ,UserController.getAllUsers)
-router.get('/', isAdmin ,UserController.deleteUserFromDb)
+router.get('/' ,isAdmin,UserController.getAllUsers)
 
 module.exports = router;

@@ -37,6 +37,7 @@ app.use('/user', require('./Routers/UserRouters'))
 app.use('/wishlist', require('./Routers/WishlistRoute'))
 
 
+
 app.all('*', (req, res, next) => {
     next(new ApiError(`Can't find this route: ${req.originalUrl}`, 400)); // Use new keyword
 });
